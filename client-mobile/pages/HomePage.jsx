@@ -27,15 +27,20 @@ const HomePage = ({ navigation }) => {
           <Text>Ini halaman home</Text>
         </TouchableOpacity> */}
 
-        <Appbar.Header>
-          {/* <Appbar.BackAction onPress={_goBack} /> */}
-          <Appbar.Content title="Home" />
+        {/* <Appbar.Header> */}
+        {/* <Appbar.BackAction onPress={_goBack} /> */}
+        {/* <Appbar.Content title="Home" />
           <Appbar.Action icon="magnify" onPress={_handleSearch} />
           <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
-        </Appbar.Header>
+        </Appbar.Header> */}
 
         <View style={{ margin: 5, padding: 10 }}>
-          <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row", width: "100%" }}>
+          <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row", width: "100%", justifyContent: "space-between" }}>
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
             <ProductCard />
             <ProductCard />
           </View>

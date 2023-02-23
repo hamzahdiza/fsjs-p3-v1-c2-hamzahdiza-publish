@@ -1,50 +1,35 @@
-import { StyleSheet, Image, TouchableOpacity, Text } from "react-native";
+import { View } from "react-native";
+import { Avatar, Card, Text, Button } from "react-native-paper";
 import SpecifiedView from "../components/SpecifiedView";
 
 const Detail = ({ route, navigation }) => {
   // const { officialName } = route.params;
 
-  const buttonOnPressHandler = () => {
-    navigation.goBack();
-  };
+  // const buttonOnPressHandler = () => {
+  //   navigation.goBack();
+  // };
 
   return (
-    <SpecifiedView style={styles.centerContainer}>
-      <Image
-        style={styles.tinyLogo}
-        source={{
-          uri: "https://cdn.shopify.com/s/files/1/0607/2841/0296/products/Hoodie-Giulio-Maroon-1.jpg?v=1676874548",
-        }}
-      />
-      <Text style={styles.headers}>Erigo T-Shirt Navy</Text>
-      <Text style={styles.container}>Description: asdadadsdfksmlkfmlsmglndsjfbnjkdnjownrofjowg</Text>
+    <SpecifiedView>
+      <View style={{ width: "100%", height: "100%", backgroundColor: "pink" }}>
+        <View style={{ width: "100%", height: "100%", flexDirection: "row", justifyContent: "center" }}>
+          <Card style={{ backgroundColor: "#fff", width: "90%", height: "97%", marginTop: 10 }} onPress={() => textOnPress()}>
+            <View style={{ alignItems: "center" }}>
+              <Card.Cover source={{ uri: "https://cdn.shopify.com/s/files/1/0607/2841/0296/products/Hoodie-Giulio-Maroon-1.jpg?v=1676874548" }} style={{ width: "93%", height: 350, marginTop: 7 }} />
+            </View>
+            <Card.Content>
+              <Text style={{ marginTop: 10, fontWeight: "bold", fontSize: 24 }}>Card title</Text>
+              <Text style={{ color: "#fe7f6c", fontSize: 16 }}>Rp. 150.000 </Text>
+            </Card.Content>
 
-      <TouchableOpacity onPress={buttonOnPressHandler}>
-        <Text>Go Back</Text>
-      </TouchableOpacity>
+            <Button icon="camera" mode="contained" onPress={() => console.log("Pressed")}>
+              Press me
+            </Button>
+          </Card>
+        </View>
+      </View>
     </SpecifiedView>
   );
 };
-
-const styles = StyleSheet.create({
-  centerContainer: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  headers: {
-    padding: 8.0,
-    paddingHorizontal: 16.0,
-    fontSize: 24.0,
-  },
-  container: {
-    paddingHorizontal: 16.0,
-  },
-  tinyLogo: {
-    width: 64,
-    height: 42,
-  },
-});
 
 export default Detail;

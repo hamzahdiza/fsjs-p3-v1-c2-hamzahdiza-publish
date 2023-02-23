@@ -1,12 +1,20 @@
 import { View } from "react-native";
 import { Avatar, Card, Text } from "react-native-paper";
-import SpecifiedView from "../components/SpecifiedView";
+import { useNavigation } from "@react-navigation/native";
 
-const ProductCard = ({}) => {
+const ProductCard = () => {
   const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+  const navigation = useNavigation();
+
+  const textOnPress = (nameProduct) => {
+    console.log(nameProduct);
+    navigation.navigate("Detail", {
+      nameProduct,
+    });
+  };
   return (
     <>
-      <Card style={{ backgroundColor: "#fff", width: "43%", height: 280, marginTop: 10 }}>
+      <Card style={{ backgroundColor: "#fff", width: "45%", height: 280, marginTop: 10, marginHorizontal: 8 }} onPress={() => textOnPress()}>
         <View style={{ alignItems: "center" }}>
           <Card.Cover source={{ uri: "https://cdn.shopify.com/s/files/1/0607/2841/0296/products/Hoodie-Giulio-Maroon-1.jpg?v=1676874548" }} style={{ width: "93%", marginTop: 7 }} />
         </View>
