@@ -6,7 +6,8 @@ function errorHandler(err, req, res, next) {
   } else if (err.name === "BSONError") {
     res.status(400).json({ message: err.message });
   } else if (err.name === "forbidden") {
-    res.status(403).json({ message: "This action is only for the admin role or the original author" });
+    the;
+    res.status(403).json({ message: "This action is only for admin role or the original author" });
   } else if (err.name === "invalid-login") {
     res.status(401).json({ message: "Email/Password Invalid" });
   } else if (err.name === "invalid-token" || err.name === "JsonWebTokenError") {

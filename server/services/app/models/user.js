@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Product, { foreignKey: "authorId", onDelete: "cascade", onUpdate: "cascade", hooks: true });
+      // User.hasMany(models.Product, { foreignKey: "authorId", onDelete: "cascade", onUpdate: "cascade", hooks: true });
     }
   }
   User.init(
@@ -49,6 +49,7 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      role: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
       address: DataTypes.STRING,
     },
