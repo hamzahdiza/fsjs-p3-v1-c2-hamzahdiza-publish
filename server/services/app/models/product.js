@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Product.belongsTo(models.User, { foreignKey: "authorId", onDelete: "cascade", onUpdate: "cascade" });
+      // Product.belongsTo(models.User, { foreignKey: "authorId", onDelete: "cascade", onUpdate: "cascade" });
       Product.belongsTo(models.Category, { foreignKey: "categoryId", onDelete: "cascade", onUpdate: "cascade" });
       Product.hasMany(models.Image, { foreignKey: "productId", onDelete: "cascade", onUpdate: "cascade", hooks: true });
     }
@@ -72,6 +72,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       categoryId: DataTypes.INTEGER,
       authorId: DataTypes.INTEGER,
+      UserMongoId: DataTypes.STRING,
     },
     {
       sequelize,

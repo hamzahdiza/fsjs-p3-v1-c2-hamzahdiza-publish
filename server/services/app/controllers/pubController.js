@@ -17,6 +17,7 @@ class PubController {
   static async getProductbySlug(req, res, next) {
     try {
       const slugProduct = req.params.slugProduct;
+      console.log(slugProduct, "KKKKKKK");
 
       const getIdProduct = await Product.findOne({
         where: {
@@ -29,6 +30,12 @@ class PubController {
           id: getIdProduct.id,
         },
         include: [
+          // {
+          //   model: User,
+          //   where: {
+          //     id: getIdProduct.authorId,
+          //   },
+          // },
           { model: Category },
           {
             model: Image,

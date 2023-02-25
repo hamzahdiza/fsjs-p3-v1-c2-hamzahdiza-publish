@@ -113,7 +113,7 @@ class Controller {
   static async postAddProducts(req, res, next) {
     const t = await sequelize.transaction();
     try {
-      const { name, description, price, mainImg, categoryId, images: imgUrl } = req.body;
+      const { name, description, price, mainImg, categoryId, images: imgUrl, UserMongoId } = req.body;
       // console.log(imgUrl[0], "===", imgUrl[1]);
       console.log(req.body);
       const addProduct = await Product.create(
@@ -123,14 +123,15 @@ class Controller {
           description: description,
           price: price,
           mainImg: mainImg,
-          authorId: req.user.id,
+          // authorId: req.user.id,
           categoryId: categoryId,
+          UserMongoId: UserMongoId,
         },
         { transaction: t }
       );
 
       let looping = [];
-      console.log(imgUrl);
+      console.log(imgUrl, "OOOOOOOOOOOO");
 
       looping = imgUrl.map((el) => {
         return { productId: addProduct.id, imgUrl: el };
@@ -149,6 +150,7 @@ class Controller {
   static async getProductbySlug(req, res, next) {
     try {
       const slugProduct = req.params.slugProduct;
+      console.log(slugProduct, ">>>>>>>>>>>>>>>>>>>>>>>>");
 
       const getIdProduct = await Product.findOne({
         where: {
@@ -170,6 +172,7 @@ class Controller {
           },
         ],
       });
+      // console.log(ProductyBySlug.id, "<<<<<<<<<<<<<<??????????????????");
 
       if (ProductyBySlug) {
         res.status(200).json(ProductyBySlug);
@@ -188,14 +191,14 @@ class Controller {
       const slugProduct = req.params.slugProduct;
       // console.log(req.params.slugProduct);
       const { name, description, price, mainImg, categoryId, images: imgUrl } = req.body;
-      // console.log(name, description, price, mainImg, categoryId, imgUrl);
+      console.log(name, description, price, mainImg, categoryId, imgUrl, "RRRRRRRRRR");
 
       const getIdProduct = await Product.findOne({
         where: {
           slug: slugProduct,
         },
       });
-      console.log(getIdProduct);
+      // console.log(getIdProduct);
 
       const editProduct = await Product.update(
         {
@@ -203,7 +206,7 @@ class Controller {
           description: description,
           price: price,
           mainImg: mainImg,
-          authorId: req.user.id,
+          // authorId: req.user.id,
           categoryId: categoryId,
         },
         { where: { slug: slugProduct } },
@@ -236,8 +239,9 @@ class Controller {
         },
         { transaction: t }
       );
+      // console.log(editProduct, "::::::::::::::::::::::::::::::");
 
-      res.status(201).json({ message: "Edit Successfully", editProduct, imageEdit });
+      res.status(201).json({ message: "Edit Successfully" });
       await t.commit();
     } catch (err) {
       console.log(err);
@@ -246,7 +250,7 @@ class Controller {
     }
   }
 
-  static async deleteProductbySlug(req, res, next) {
+  static async deleteProductbyId(req, res, next) {
     const t = await sequelize.transaction();
     try {
       const idProduct = req.params.idProduct;

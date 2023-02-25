@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 
-module.exports = {
-  getAllUsers: async (req, res, next) => {
+class Controller {
+  static async getAllUsers(req, res, next) {
     try {
       const data = await User.getAll();
 
@@ -12,9 +12,9 @@ module.exports = {
       console.log(err);
       next(err);
     }
-  },
+  }
 
-  getUserById: async (req, res, next) => {
+  static async getUserById(req, res, next) {
     try {
       const { id } = req.params;
       const findUser = await User.getById(id);
@@ -23,24 +23,22 @@ module.exports = {
         throw { name: "data-not-found" };
       }
 
-      res.status(200).json({
-        data: findUser,
-      });
+      res.status(200).json(findUser);
     } catch (err) {
       console.log(err);
       next(err);
     }
-  },
+  }
 
-  postAddUser: async (req, res, next) => {
+  static async postAddUser(req, res, next) {
     try {
-      const { username, email, password, role, phoneNumber, address } = req.body;
+      const { username, email, password, phoneNumber, address } = req.body;
 
       const addDataUser = await User.addUser({
         username,
         email,
         password,
-        role,
+        role: "admin",
         phoneNumber,
         address,
       });
@@ -55,12 +53,27 @@ module.exports = {
         address,
       });
     } catch (err) {
-      console.log(err);
-      next(err);
+      console.log(err.name, "OPOPOPOP");
+      if (err.name === "username-notNull") {
+        res.status(400).json(err.message);
+      } else if (err.name === "email-notNull") {
+        res.status(400).json(err.message);
+      }
+      if (err.name === "password-notNull") {
+        res.status(400).json(err.message);
+      }
+      if (err.name === "phoneNumber-notNull") {
+        res.status(400).json(err.message);
+      }
+      if (err.name === "address-notNull") {
+        res.status(400).json(err.message);
+      } else {
+        next(err);
+      }
     }
-  },
+  }
 
-  deleteUserById: async (req, res, next) => {
+  static async deleteUserById(req, res, next) {
     try {
       const { id } = req.params;
       const findUser = await User.getById(id);
@@ -77,7 +90,10 @@ module.exports = {
       });
     } catch (err) {
       console.log(err);
+
       next(err);
     }
-  },
-};
+  }
+}
+
+module.exports = Controller;
