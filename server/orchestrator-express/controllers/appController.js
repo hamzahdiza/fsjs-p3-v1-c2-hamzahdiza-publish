@@ -16,7 +16,7 @@ class appControlller {
       const productsCache = await redis.get("redisProducts");
       if (productsCache) {
         const data = JSON.parse(productsCache);
-        console.log(data, "REDISSSSSSSSSSSSSSSSSSSSSSSSSs");
+        // console.log(data, "REDISSSSSSSSSSSSSSSSSSSSSSSSSs");
         console.log("Masuk Redis");
         return res.status(200).json(data);
       }
@@ -77,7 +77,7 @@ class appControlller {
           UserMongoId,
         },
       });
-
+      redis.flushall("ASYNC");
       res.status(201).json(response.data);
     } catch (err) {
       console.log(err.response.data);
@@ -103,7 +103,7 @@ class appControlller {
           images,
         },
       });
-
+      redis.flushall("ASYNC");
       res.status(201).json(response.data);
     } catch (err) {
       console.log(err.response.data);
@@ -119,6 +119,7 @@ class appControlller {
         url: `${productAPI}/products/${idProduct}`,
       });
       // console.log(response);
+      redis.flushall("ASYNC");
       res.status(200).json(response.data);
     } catch (err) {
       console.log("Masuk sini");
