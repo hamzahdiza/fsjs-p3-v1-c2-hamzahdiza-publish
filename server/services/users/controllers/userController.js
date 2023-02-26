@@ -44,7 +44,7 @@ class Controller {
       });
 
       res.status(201).json({
-        id: addDataUser.insertedId,
+        _id: addDataUser.insertedId,
         username,
         email,
         password,
@@ -75,18 +75,19 @@ class Controller {
 
   static async deleteUserById(req, res, next) {
     try {
-      const { id } = req.params;
-      const findUser = await User.getById(id);
+      const { id: _id } = req.params;
+      console.log(_id, "<<<<<<<<?????????????/");
+      const findUser = await User.getById(_id);
 
       if (!findUser) {
         throw { name: "data-not-found" };
       }
 
-      const deleteUser = await User.deleteById(id);
+      const deleteUser = await User.deleteById(_id);
 
       res.status(200).json({
         message: "Delete Successfully",
-        data: findUser,
+        // data: findUser,
       });
     } catch (err) {
       console.log(err);
