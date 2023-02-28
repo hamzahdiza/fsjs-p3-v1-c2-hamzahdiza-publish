@@ -10,7 +10,7 @@ class userControlller {
         url: `${userAPI}`,
       });
       // console.log(response.data);
-      // console.log("Masuk Orc");
+      console.log("Masuk Orc");
       console.log(response.data);
       res.status(200).json(response.data);
     } catch (err) {

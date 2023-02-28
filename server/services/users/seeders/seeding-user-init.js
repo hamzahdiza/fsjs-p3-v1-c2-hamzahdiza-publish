@@ -1,7 +1,8 @@
 const { MongoClient } = require("mongodb");
 const docs = require("./user-init.json");
+const PASSWORD_MONGO = process.env.PASSWORD_MONGO;
 
-const uri = "mongodb://127.0.0.1:27017";
+const uri = `mongodb+srv://hamzahdiza:qK4PKSz1CODbXIjd@p3c2.b1yuyjc.mongodb.net/test`;
 const client = new MongoClient(uri);
 
 async function run() {

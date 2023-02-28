@@ -1,6 +1,16 @@
-const HOST = "http://localhost:4002";
-const HOSTUSER = "http://localhost:4001";
+// const HOST = "http://localhost:4002";
+// const HOSTUSER = "http://localhost:4001";
+const HOST = "http://app:4002";
+const HOSTUSER = "http://users:4001";
 const axios = require("axios");
+const Redis = require("ioredis");
+require("dotenv").config();
+
+const redis = new Redis({
+  port: 17812, // Redis port
+  host: "redis-17812.c252.ap-southeast-1-1.ec2.cloud.redislabs.com", // Redis host
+  password: process.env.password_redis,
+});
 
 const typeDefs = `#graphql
   type CategoryField {
@@ -111,66 +121,99 @@ const typeDefs = `#graphql
 const resolvers = {
   Query: {
     getAllProducts: async () => {
-      const { data } = await axios.get(`${HOST}/pub/products`);
-      return data;
+      try {
+        const productsCache = await redis.get("cacheProducts");
+        if (productsCache) {
+          const data = JSON.parse(productsCache);
+          // console.log(data, "REDISSSSSSSSSSSSSSSSSSSSSSSSSs");
+          console.log("Masuk Redis");
+          return data;
+        } else {
+          console.log("Kagak Masuk");
+          const { data } = await axios.get(`${HOST}/pub/products`);
+          await redis.set("cacheProducts", JSON.stringify(data));
+          return data;
+        }
+      } catch (err) {
+        return err;
+      }
     },
 
     getProductBySlug: async (_, { slugProduct }) => {
-      const dataProduct = await axios.get(`${HOST}/pub/products/${slugProduct}`);
-      // console.log(dataProduct.data.UserMongoId);
-      const dataUser = await axios.get(`${HOSTUSER}/users/${dataProduct.data.UserMongoId}`);
-
-      dataProduct.data.User = dataUser.data;
-      return dataProduct.data;
+      try {
+        console.log(slugProduct);
+        const dataProduct = await axios.get(`${HOST}/pub/products/${slugProduct}`);
+        // console.log(dataProduct.data.UserMongoId);
+        const dataUser = await axios.get(`${HOSTUSER}/users/${dataProduct.data.UserMongoId}`);
+        dataProduct.data.User = dataUser.data;
+        return dataProduct.data;
+      } catch (err) {
+        return err;
+      }
     },
   },
 
   Mutation: {
     postProduct: async (_, { name, description, price, mainImg, categoryId, imagesArr, UserMongoId }) => {
-      console.log(name, description, price, mainImg, categoryId, imagesArr, UserMongoId);
-      const loopImages = imagesArr.map((el) => {
-        return el.imageInput;
-      });
-      const images = loopImages;
-      console.log(images);
-      const { data } = await axios.post(`${HOST}/products`, {
-        name,
-        description,
-        price,
-        mainImg,
-        categoryId,
-        images,
-        UserMongoId,
-      });
-      console.log(data);
-      return data;
+      try {
+        console.log(name, description, price, mainImg, categoryId, imagesArr, UserMongoId);
+        const loopImages = imagesArr.map((el) => {
+          return el.imageInput;
+        });
+        const images = loopImages;
+        console.log(images);
+        const { data } = await axios.post(`${HOST}/products`, {
+          name,
+          description,
+          price,
+          mainImg,
+          categoryId,
+          images,
+          UserMongoId,
+        });
+        redis.flushall("ASYNC");
+        console.log(data);
+        return data;
+      } catch (err) {
+        return err;
+      }
     },
 
     putProduct: async (_, { slugProduct, name, description, price, mainImg, categoryId, imagesArr, UserMongoId }) => {
-      console.log(name, description, price, mainImg, categoryId, imagesArr, UserMongoId);
-      const loopImages = imagesArr.map((el) => {
-        return el.imageInput;
-      });
-      const images = loopImages;
-      console.log(images);
-      const { data } = await axios.put(`${HOST}/products/${slugProduct}`, {
-        name,
-        description,
-        price,
-        mainImg,
-        categoryId,
-        images,
-        UserMongoId,
-      });
-      console.log(data);
-      return data;
+      try {
+        console.log(name, description, price, mainImg, categoryId, imagesArr, UserMongoId);
+        const loopImages = imagesArr.map((el) => {
+          return el.imageInput;
+        });
+        const images = loopImages;
+        console.log(images);
+        const { data } = await axios.put(`${HOST}/products/${slugProduct}`, {
+          name,
+          description,
+          price,
+          mainImg,
+          categoryId,
+          images,
+          UserMongoId,
+        });
+        redis.flushall("ASYNC");
+        console.log(data);
+        return data;
+      } catch (err) {
+        return err;
+      }
     },
 
     deleteProduct: async (_, { id }) => {
-      console.log("masuk sisni delete", id);
-      const { data } = await axios.delete(`${HOST}/products/${id}`);
-      console.log(data);
-      return data;
+      try {
+        console.log("masuk sisni delete", id);
+        const { data } = await axios.delete(`${HOST}/products/${id}`);
+        redis.flushall("ASYNC");
+        console.log(data);
+        return data;
+      } catch (err) {
+        return err;
+      }
     },
   },
 };

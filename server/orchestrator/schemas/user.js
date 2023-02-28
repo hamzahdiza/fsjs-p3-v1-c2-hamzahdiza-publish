@@ -1,4 +1,4 @@
-const HOST = "http://localhost:4001";
+const HOST = "http://users:4001";
 const axios = require("axios");
 
 const typeDefs = `#graphql
@@ -51,34 +51,50 @@ const typeDefs = `#graphql
 const resolvers = {
   Query: {
     getAllUsers: async () => {
-      const { data } = await axios.get(`${HOST}/users`);
-      return data;
+      try {
+        const { data } = await axios.get(`${HOST}/users`);
+        return data;
+      } catch (err) {
+        return err;
+      }
     },
 
     getUserById: async (_, { id }) => {
-      const { data } = await axios.get(`${HOST}/users/${id}`);
-      return data;
+      try {
+        const { data } = await axios.get(`${HOST}/users/${id}`);
+        return data;
+      } catch (err) {
+        return err;
+      }
     },
   },
 
   Mutation: {
     postUser: async (_, { username, email, password, phoneNumber, address }) => {
-      const { data } = await axios.post(`${HOST}/users`, {
-        username,
-        email,
-        password,
-        phoneNumber,
-        address,
-      });
-      console.log(data);
-      return data;
+      try {
+        const { data } = await axios.post(`${HOST}/users`, {
+          username,
+          email,
+          password,
+          phoneNumber,
+          address,
+        });
+        console.log(data);
+        return data;
+      } catch (err) {
+        return err;
+      }
     },
 
     deleteUser: async (_, { id }) => {
-      console.log("masuk sisni", id);
-      const { data } = await axios.delete(`${HOST}/users/${id}`);
-      console.log(data);
-      return data;
+      try {
+        console.log("masuk sisni", id);
+        const { data } = await axios.delete(`${HOST}/users/${id}`);
+        console.log(data);
+        return data;
+      } catch (err) {
+        return err;
+      }
     },
   },
 };
