@@ -8,12 +8,11 @@ const { typeDefs: productsTypeDefs, resolvers: productsResolver } = require("./s
   const server = new ApolloServer({
     typeDefs: [userTypeDefs, productsTypeDefs],
     resolvers: [userResolvers, productsResolver],
-
     introspection: true,
   });
 
   const { url } = await startStandaloneServer(server, {
-    listen: { port: 3999 },
+    port: process.env.PORT || 4000,
   });
 
   console.log(`🚀  Server ready at: ${url}`);

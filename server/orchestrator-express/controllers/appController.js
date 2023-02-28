@@ -7,7 +7,7 @@ require("dotenv").config();
 const redis = new Redis({
   port: 17812, // Redis port
   host: "redis-17812.c252.ap-southeast-1-1.ec2.cloud.redislabs.com", // Redis host
-  password: process.env.password,
+  password: process.env.password_redis,
 });
 
 class appControlller {
