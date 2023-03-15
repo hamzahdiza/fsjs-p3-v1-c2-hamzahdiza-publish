@@ -1,4 +1,5 @@
-const HOST = "http://users:4001";
+// const HOST = "http://users:4001";
+const HOST = "http://localhost:4001";
 const axios = require("axios");
 
 const typeDefs = `#graphql

@@ -1,9 +1,11 @@
 import { FlatList, StatusBar, StyleSheet, TouchableOpacity, ScrollView, Image, View } from "react-native";
 import SpecifiedView from "../components/SpecifiedView";
-import { Avatar, Button, Card, Text } from "react-native-paper";
+import { Avatar, Button, Card, Searchbar, Text } from "react-native-paper";
 const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
 import { Appbar } from "react-native-paper";
+import { useQuery, gql } from "@apollo/client";
 import ProductCard from "../components/ProductCard";
+import { GET_ALL_PRODUCTS } from "../query";
 
 const HomePage = ({ navigation }) => {
   const textOnPress = (officialName) => {
@@ -13,36 +15,21 @@ const HomePage = ({ navigation }) => {
     });
   };
 
-  const _goBack = () => console.log("Went back");
+  const { loading, error, data } = useQuery(GET_ALL_PRODUCTS);
 
-  const _handleSearch = () => console.log("Searching");
+  console.log(error);
 
-  const _handleMore = () => console.log("Shown more");
-
+  if (loading) return <Image source={require("../assets/preloader-assets.gif")} style={{ alignSelf: "center" }} />;
+  if (error) return <Text>Error {error.message}</Text>;
   return (
     <SpecifiedView>
       <ScrollView>
-        {/* <Text>HSDfmdlsd</Text>
-        <TouchableOpacity onPress={() => textOnPress("tshirt")}>
-          <Text>Ini halaman home</Text>
-        </TouchableOpacity> */}
-
-        {/* <Appbar.Header> */}
-        {/* <Appbar.BackAction onPress={_goBack} /> */}
-        {/* <Appbar.Content title="Home" />
-          <Appbar.Action icon="magnify" onPress={_handleSearch} />
-          <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
-        </Appbar.Header> */}
-
         <View style={{ margin: 5, padding: 10 }}>
+          <Searchbar placeholder="Search Products" />
           <View style={{ flex: 1, flexWrap: "wrap", flexDirection: "row", width: "100%", justifyContent: "space-between" }}>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            {data?.getAllProducts?.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </View>
         </View>
         <StatusBar style="auto" />

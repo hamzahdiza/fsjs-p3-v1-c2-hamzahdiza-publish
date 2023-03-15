@@ -2,28 +2,30 @@ import { View } from "react-native";
 import { Avatar, Card, Text } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
   const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
   const navigation = useNavigation();
 
-  const textOnPress = (nameProduct) => {
-    console.log(nameProduct);
+  const summaryName = () => {
+    return product.name?.length > 30 ? product?.name?.substring(0, 30) + "..." : product.name;
+  };
+
+  const textOnPress = (slugProduct) => {
+    // console.log(slugProduct);
     navigation.navigate("Detail", {
-      nameProduct,
+      slugProduct,
     });
   };
   return (
     <>
-      <Card style={{ backgroundColor: "#fff", width: "45%", height: 280, marginTop: 10, marginHorizontal: 8 }} onPress={() => textOnPress()}>
+      <Card style={{ backgroundColor: "#fff", width: "45%", height: 300, marginTop: 10, marginHorizontal: 8 }} onPress={() => textOnPress(product.slug)}>
         <View style={{ alignItems: "center" }}>
-          <Card.Cover source={{ uri: "https://cdn.shopify.com/s/files/1/0607/2841/0296/products/Hoodie-Giulio-Maroon-1.jpg?v=1676874548" }} style={{ width: "93%", marginTop: 7 }} />
+          <Card.Cover source={{ uri: product.mainImg }} style={{ width: "93%", marginTop: 7 }} />
         </View>
         <Card.Content>
-          <Text variant="titleMedium" style={{ marginTop: 6 }}>
-            Card title
-          </Text>
+          <Text style={{ marginTop: 6, fontSize: 14, fontWeight: "bold" }}>{summaryName()}</Text>
           <Text variant="bodyLarge" style={{ color: "#fe7f6c" }}>
-            Rp. 150.000{" "}
+            Rp. {product?.price}
           </Text>
         </Card.Content>
       </Card>

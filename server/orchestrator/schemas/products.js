@@ -1,7 +1,7 @@
-// const HOST = "http://localhost:4002";
-// const HOSTUSER = "http://localhost:4001";
-const HOST = "http://app:4002";
-const HOSTUSER = "http://users:4001";
+const HOST = "http://localhost:4002";
+const HOSTUSER = "http://localhost:4001";
+// const HOST = "http://app:4002";
+// const HOSTUSER = "http://users:4001";
 const axios = require("axios");
 const Redis = require("ioredis");
 require("dotenv").config();
