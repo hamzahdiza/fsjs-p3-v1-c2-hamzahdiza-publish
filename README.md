@@ -86,9 +86,9 @@ Target:
 
 ...
 
-![mobile1](https://user-images.githubusercontent.com/76916527/225235675-4304ba7f-e5b2-4b29-aa1a-a40c2d765ac5.jpg width="200")
-![mobile2](https://user-images.githubusercontent.com/76916527/225235724-e471f7ac-7bb3-464a-9cae-1f4473ad231d.jpg width="200")
-![mobile3](https://user-images.githubusercontent.com/76916527/225235740-c1253a45-6ed0-4312-843f-591a3733a892.jpg width="200")
+![mobile1](https://user-images.githubusercontent.com/76916527/225235675-4304ba7f-e5b2-4b29-aa1a-a40c2d765ac5.jpg)
+![mobile2](https://user-images.githubusercontent.com/76916527/225235724-e471f7ac-7bb3-464a-9cae-1f4473ad231d.jpg)
+![mobile3](https://user-images.githubusercontent.com/76916527/225235740-c1253a45-6ed0-4312-843f-591a3733a892.jpg)
 
 
 
