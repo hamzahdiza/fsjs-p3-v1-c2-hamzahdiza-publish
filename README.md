@@ -17,15 +17,15 @@ Struktur Folder:
 
 Target:
 
-- [ ] Memahami `react-native` dan `expo`
-- [ ] Install `expo-cli` & `expo init` & setup project mobile
-- [ ] Mencoba component Text, View, Image, StyleSheet, Button, ScrollView, FlatList
-- [ ] Mencoba useState, useEffect dalam react-native
-- [ ] Hit API server yang sudah dibuat untuk mendapatkan data
-- [ ] Mengetahui bahwa redux & redux-thunk bisa diimplementasi di react-native
-- [ ] Memahami `react-native-navigation`
-- [ ] Memahami Stack Navigation & Tab Navigation
-- [ ] Membuat min 2 Screen (Home, Detail)
+- [V] Memahami `react-native` dan `expo`
+- [V] Install `expo-cli` & `expo init` & setup project mobile
+- [V] Mencoba component Text, View, Image, StyleSheet, Button, ScrollView, FlatList
+- [V] Mencoba useState, useEffect dalam react-native
+- [V] Hit API server yang sudah dibuat untuk mendapatkan data
+- [V] Mengetahui bahwa redux & redux-thunk bisa diimplementasi di react-native
+- [V] Memahami `react-native-navigation`
+- [V] Memahami Stack Navigation & Tab Navigation
+- [V] Membuat min 2 Screen (Home, Detail)
 
 **Report:**
 
@@ -35,10 +35,10 @@ Target:
 
 Target:
 
-- [ ] Memahami React Native Gesture Handler
-- [ ] Memahami NoSQL: Mongodb
-- [ ] Membuat service users dengan Mongodb (Kerjakan di `server/services/users`)
-- [ ] Membuat action pada users: Read, Create & Delete (Update optional)
+- [V] Memahami React Native Gesture Handler
+- [V] Memahami NoSQL: Mongodb
+- [V] Membuat service users dengan Mongodb (Kerjakan di `server/services/users`)
+- [V] Membuat action pada users: Read, Create & Delete (Update optional)
 
 **Report:**
 
@@ -48,12 +48,12 @@ Target:
 
 Target:
 
-- [ ] Membuat Server Baru, Microservices
-- [ ] Memisahkan service user dan app
-- [ ] Membuat Orchestrator-express yang bisa komunikasi ke service user dan app
-- [ ] Memahami cache dalam database
-- [ ] Install dataabase Redis dan menggunakan ioRedis sebagai cache
-- [ ] Menjaga relasi User dengan product pada microservice
+- [V] Membuat Server Baru, Microservices
+- [V] Memisahkan service user dan app
+- [V] Membuat Orchestrator-express yang bisa komunikasi ke service user dan app
+- [V] Memahami cache dalam database
+- [V] Install dataabase Redis dan menggunakan ioRedis sebagai cache
+- [V] Menjaga relasi User dengan product pada microservice
 
 **Report:**
 
@@ -63,13 +63,13 @@ Target:
 
 Target:
 
-- [ ] Memahami GraphQL dan tahu perbedaan dengan RESTful API
-- [ ] Membuat Orchestrator dengan menggunakan GraphQL
-- [ ] Memahami Typedefs, Resolvers
-- [ ] Mampu membuat Query dan Mutation
-- [ ] Menggunakan redis pada graphql untuk kebutuhan cache server
-- [ ] Memahami Apollo-Client & Implementasi pada mobile apps
-- [ ] Memahami cache pada Apollo-Client
+- [V] Memahami GraphQL dan tahu perbedaan dengan RESTful API
+- [V] Membuat Orchestrator dengan menggunakan GraphQL
+- [V] Memahami Typedefs, Resolvers
+- [V] Mampu membuat Query dan Mutation
+- [V] Menggunakan redis pada graphql untuk kebutuhan cache server
+- [V] Memahami Apollo-Client & Implementasi pada mobile apps
+- [V] Memahami cache pada Apollo-Client
 
 **Report:**
 
@@ -79,9 +79,17 @@ Target:
 
 Target:
 
-- [ ] Memahami Docker
-- [ ] Implementasi Docker pada aplikasi server
+- [V] Memahami Docker
+- [V] Implementasi Docker pada aplikasi server
 
 **Report:**
 
 ...
+
+![mobile1](https://user-images.githubusercontent.com/76916527/225235675-4304ba7f-e5b2-4b29-aa1a-a40c2d765ac5.jpg)
+![mobile2](https://user-images.githubusercontent.com/76916527/225235724-e471f7ac-7bb3-464a-9cae-1f4473ad231d.jpg)
+![mobile3](https://user-images.githubusercontent.com/76916527/225235740-c1253a45-6ed0-4312-843f-591a3733a892.jpg)
+
+
+
+
